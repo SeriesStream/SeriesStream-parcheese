@@ -18,7 +18,7 @@
 
     <groupId>com.fri.series.stream</groupId>
     <artifactId>series-stream-parcheese</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
 	
 	<licenses>
         <license>

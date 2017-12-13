@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import java.util.Optional;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.inject.Provider;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Path("parcheeses")
@@ -24,7 +25,7 @@ public class ParcheeseResource {
 
     @Inject
     @DiscoverService("series-stream-catalog")
-    private Optional<String> baseUrl;
+    private Provider<Optional<String>> baseProvider;
     //private String baseUrl;
 
     private Client httpClient = ClientBuilder.newClient();
@@ -38,6 +39,7 @@ public class ParcheeseResource {
     @GET
     @Path("{id}/episode")
     public Response getParcheesedEpisode(@PathParam("id") int id) {
+        Optional<String> baseUrl = baseProvider.get();
         Parcheese parcheese = ParcheesesDatabase.getParcheese(id);
         if(parcheese != null){
             if (baseUrl.isPresent()) {
