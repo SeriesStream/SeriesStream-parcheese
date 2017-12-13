@@ -1,0 +1,24 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: postgres-parcheese-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres-parcheese
+    spec:
+      containers:
+        - image: centos/postgresql-94-centos7
+          name: postgres-parcheese
+          env:
+            - name: POSTGRESQL_USER
+              value: dbuser
+            - name: POSTGRESQL_PASSWORD
+              value: postgres
+            - name: POSTGRESQL_DATABASE
+              value: parcheese
+          ports:
+          - containerPort: 5432
+            protocol: TCP

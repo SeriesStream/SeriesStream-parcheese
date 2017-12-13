@@ -24,7 +24,8 @@ public class ParcheeseResource {
 
     @Inject
     @DiscoverService("series-stream-catalog")
-    private String baseUrl;
+    private Optional<String> baseUrl;
+    //private String baseUrl;
 
     private Client httpClient = ClientBuilder.newClient();
 
@@ -39,11 +40,12 @@ public class ParcheeseResource {
     public Response getParcheesedEpisode(@PathParam("id") int id) {
         Parcheese parcheese = ParcheesesDatabase.getParcheese(id);
         if(parcheese != null){
-            if (baseUrl != null) {
+            if (baseUrl.isPresent()) {
                 try {
-                    System.out.println(baseUrl);
+                    String link = baseUrl.get();
+                    System.out.println(link);
                     return httpClient
-                            .target(baseUrl + "/v1/episodes/" + parcheese.getEpisodeId())
+                            .target(link + "/v1/episodes/" + parcheese.getEpisodeId())
                             .request().get();
                 } catch (WebApplicationException | ProcessingException e) {
                     log.error(e);
