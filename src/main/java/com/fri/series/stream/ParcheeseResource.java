@@ -47,6 +47,18 @@ public class ParcheeseResource {
 
     @GET
     @Timed(name = "get_episodes_long_lasting")
+    @Path("user/{id}")
+    public Response getParcheeses(@PathParam("id") int id) {
+        List<Parcheese> parcheeses = ParcheesesDatabase.getParcheeseFromUser(id);
+        if(parcheeses != null){
+            return Response.ok(parcheeses).build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+    }
+
+    @GET
+    @Timed(name = "get_episodes_long_lasting")
     @Path("{id}/episode")
     public Response getParcheesedEpisode(@PathParam("id") int id) {
         Parcheese parcheese = ParcheesesDatabase.getParcheese(id);

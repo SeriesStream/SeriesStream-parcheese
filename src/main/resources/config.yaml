@@ -2,7 +2,7 @@ kumuluzee:
   name: series-stream-parcheese
   env:
     name: dev
-  version: 0.0.4
+  version: 0.0.5
   config:
     etcd:
       hosts: http://159.8.79.87:30024

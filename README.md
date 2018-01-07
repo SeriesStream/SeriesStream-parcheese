@@ -6,5 +6,5 @@ mvn clean package
 ```
 ## Run
 ```
-java -jar target/series-stream-parcheese-0.0.4-SNAPSHOT.jar
+java -jar target/series-stream-parcheese-0.0.5-SNAPSHOT.jar
 ```
